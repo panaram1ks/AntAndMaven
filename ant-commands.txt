@@ -1,1 +1,5 @@
 ant -buildfile somename.xml
+
+if file has name build.xml we can use only 'ant' command from directory where file is!
+
+ant
