@@ -1,0 +1,3 @@
+ant -buildfile classfileset.xml
+
+ant -buildfile classfileset.xml -projecthelp
