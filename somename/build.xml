@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 
-<project default="test">
-	<target name="test">
-		<echo message="Hello world!" />
-		<mkdir dir="newDirectory" />
-	</target>
+<project default="another" basedir="." name="AntProject">
+
+    <property name="pi" value="3.14"/>
+    <property name="myUrl" value="www.company.com"/>
+
+    <target name="test">
+        <!--        User define properties         -->
+        <echo message="User defined properties: pi : ${pi}, myUrl : ${myUrl}"/>
+        <!--		<mkdir dir="newDirectory" />-->
+    </target>
+
+    <target name="another" depends="test">
+        <echo message="world!"/>
+    </target>
 </project>	

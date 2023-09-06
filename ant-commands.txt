@@ -1,3 +1,7 @@
+export ANT_HOME=/home/parom/Ant1.9/apache-ant-1.10.14
+https://ant.apache.org/manual/install.html
+ant -f fetch.xml -Ddest=system
+
 ant -buildfile somename.xml
 
 if file has name build.xml we can use only 'ant' command from directory where file is!
