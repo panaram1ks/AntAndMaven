@@ -6,7 +6,10 @@
     <property name="pi" value="3.14"/>
     <property name="myUrl" value="www.company.com"/>
 
+    <property file="build.properties" />
+
     <target name="test">
+        <echo message="From build.properties file : ${keyname}" />
         <!--        User define properties         -->
         <echo message="User defined properties: pi : ${pi}, myUrl : ${myUrl}"/>
 
