@@ -9,6 +9,17 @@
     <target name="test">
         <!--        User define properties         -->
         <echo message="User defined properties: pi : ${pi}, myUrl : ${myUrl}"/>
+
+        <!--        System properties           -->
+        <echo message="System properties : OS Name : ${os.name} ${os.version}, JVM Vendor : ${java.vm.vendor} ${java.vm.version}"/>
+
+        <!--        Built-in properties         -->
+        <echo message="Built-in Properties : Basedir : ${basedir}, Ant home : ${ant.home}"/>
+
+        <!--        toString of Types           -->
+        <fileset id="xmlfile" dir="." includes="*.xml"/>
+        <echo> toString of fileset : ${toString:xmlfiles} </echo>
+
         <!--		<mkdir dir="newDirectory" />-->
     </target>
 
