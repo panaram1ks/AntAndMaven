@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="cleanBeforeDeploy" name="AntTestProj">
+
+    <property name="project.classes.dir" value="build/classes"/>
+    <property name="project.web.dir" value="WebContent"/>
+    <property name="project.lid.dir" value="${project.web.dir}/WEB-INF/lib"/>
+
+    <target name="clean">
+        <delete dir="${project.classes.dir}"/>
+        <delete dir="${project.war}"/>
+    </target>
+
+    <target name="init" depends="clean">
+        <mkdir dir="${project.classes.dir}"/>
+
+        <copy includeemptydirs="false" todir="${project.classes.dir}">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <path id="classpath.lid">
+        <fileset dir="${project.lid.dir}" includes="*.jar"/>
+    </path>
+
+    <target name="build" depends="init">
+        <javac destdir="${project.classes.dir}" includeantruntime="false">
+            <src path="src"/>
+            <classpath refid="classpath.lid"/>
+        </javac>
+    </target>
+
+    <property name="project.name" value="${ant.project.name}"/> <!--    AntTestProj-->
+    <property name="project.war" value="${project.name}.war"/>
+
+    <target name="package" depends="build">
+        <war destfile="${project.war}" index="true" needxmlfile="false">
+            <classes dir="${project.classes.dir}"/> <!--  include all files from dir classes-->
+            <lib dir="${project.lid.dir}"/> <!--  not necessary include servlet into project but only for example-->
+            <fileset dir="${project.web.dir}">
+                <include name="**/*.*"/>
+            </fileset>
+        </war>
+    </target>
+
+    <!--    access to enveroments variable-->
+    <property environment="env"/>
+    <!--    <property name="TOMCAT_HOME" value="${env.CATALINA_HOME}"/>-->
+    <property name="TOMCAT_HOME" value="/home/parom/IdeaProjects/apatcheTomcat/apache-tomcat-10.0.27"/>
+    <property name="project.deploy.location" value="${TOMCAT_HOME}/webapps"/>
+
+    <target name="deploy" depends="package">
+        <copy file="${project.war}" todir="${project.deploy.location}"/>
+    </target>
+
+    <target name="cleanBeforeDeploy" depends="deploy">
+<!--        <delete dir="${project.classes.dir}"/>-->
+<!--        <delete file="${project.war}"/>-->
+    </target>
+
+</project>
